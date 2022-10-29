@@ -1,36 +1,52 @@
-import useSWR from "swr"
-import Button from "react-bootstrap/Button"
-import Card from "react-bootstrap/Card"
+import useSWR from "swr";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Link from "next/link";
+import Error from "next/error";
+import { BsBoxArrowUpRight } from "react-icons/bs";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json()); 
+// ArtworkCard (components/ArtworkCard.js)
+export default function ArtworkCard({ objectID }) {
+  const { data, error } = useSWR(
+    `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}`
+  );
 
-// ArtworkCardDetail (components/ArtworkCard.js)
-export default function ArtworkCardDetail({objectID}){
-    const { data, error } = useSWR(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}`, fetcher);
-
-    if (error) return <Error statusCode={404} />
-
-    else if (!data) return null
-
-    else
-    return(
-        <>
-        <Card style={{ width: '18rem' }}>
-            {primaryImage && <Card.Img variant="top" src={primaryImage} />}
-            <Card.Body>
-                <Card.Title>{title ? title : "N/A"}</Card.Title>
-                <Card.Text>
-                    <strong>Date: </strong>{objectDate ? objectDate : "N/A"}
-                    <strong>Classification: </strong>{classification ? classification : "N/A"}
-                    <strong>Medium: </strong>{medium ? medium : "N/A"}
-                    <br /><br />
-                    <strong>Artist: </strong>{artistDisplayName ? <a href={artistWikidata_URL} target="_blank" rel="noreferrer" >{artistDisplayName}</a> : "N/A"}
-                    <strong>Credit Line: </strong>{creditLine ? creditLine : "N/A"}
-                    <strong>Dimensions: </strong>{dimensions ? dimensions : "N/A"}
-                </Card.Text>
-                <Link href={`/artwork/${objectID}`} passHref><Button variant="primary">{objectID}</Button></Link>
-            </Card.Body>
+  if (error) return <Error statusCode={404} />;
+  else if (!data) return null;
+  else
+    return (
+      <>
+        <Card className="rounded shadow-sm border-0 h-100">
+          <Card.Img
+            variant="top"
+            className="my-card"
+            src={
+              data.primaryImageSmall
+                ? data.primaryImageSmall
+                : "https://via.placeholder.com/375x375.png?text=%5b+Not+Available+%5d"
+            }
+          />
+          <Card.Body className="d-flex flex-column">
+            <Card.Title>{data.title ? data.title : "N/A"}</Card.Title>
+            <Card.Text className="text-muted">
+              <strong>Date: </strong>
+              {data.objectDate ? data.objectDate : "N/A"}
+              <br />
+              <strong>Classification: </strong>
+              {data.classification ? data.classification : "N/A"}
+              <br />
+              <strong>Medium: </strong>
+              {data.medium ? data.medium : "N/A"}
+              <br />
+              <br />
+            </Card.Text>
+            <Link href={`/artwork/${objectID}`} passHref>
+              <Button className="mt-auto" variant="outline-danger">
+                ID: {objectID} <BsBoxArrowUpRight className="float-end" />
+              </Button>
+            </Link>
+          </Card.Body>
         </Card>
-        </>
-    )
+      </>
+    );
 }

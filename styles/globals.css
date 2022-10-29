@@ -1,0 +1,20 @@
+.my-button { 
+    display: inline-flex; 
+    flex-flow: row nowrap; 
+    align-items: center; 
+    justify-content: space-between; 
+}
+
+.navbar-brand
+{
+  font-weight: 700;
+}
+
+.my-card{
+    max-height: 300px !important;
+    object-fit: cover;
+}
+
+.footer-svg{
+    z-index: -1;
+}
