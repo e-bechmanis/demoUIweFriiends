@@ -2,13 +2,17 @@ import { Container, Nav, Navbar, Form, Button } from "react-bootstrap";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaUserAlt } from "react-icons/fa";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { useAtom } from "jotai";
+import { searchHistoryAtom } from "../store";
 
 // components/MainNav.js
 export default function MainNav() {
   const router = useRouter();
   const [query, setQuery] = useState("Search");
   const [isExpanded, setExpanded] = useState(false);
+  const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
 
   const handleSearchInput = (e) => setQuery(e.target.value);
 
@@ -16,6 +20,7 @@ export default function MainNav() {
     e.preventDefault();
     router.push(`/artwork?title=true&q=${query}`);
     setExpanded(false);
+    setSearchHistory((current) => [...current, queryString]);
   };
 
   const controlMenuToggle = () => {
@@ -74,6 +79,22 @@ export default function MainNav() {
               </Button>
             </Form>
             &nbsp;
+            <Nav>
+              <NavDropdown
+                title={
+                  <span>
+                    User Name <FaUserAlt /> &nbsp;
+                  </span>
+                }
+                id="basic-nav-dropdown"
+              >
+                <Link href="/favourites" passHref legacyBehavior>
+                  <NavDropdown.Item onClick={controlLinks}>
+                    Favourites
+                  </NavDropdown.Item>
+                </Link>
+              </NavDropdown>
+            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
