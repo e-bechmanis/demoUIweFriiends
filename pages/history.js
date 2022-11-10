@@ -48,7 +48,10 @@ export default function History() {
         <ListGroup>
           {parsedHistory.keys(historyItem, index).map((key) => (
             <>
-              <ListGroup.Item onClick={(e) => historyClicked(e, index)}>
+              <ListGroup.Item
+                className={styles.historyListItem}
+                onClick={(e) => historyClicked(e, index)}
+              >
                 {key}: <strong>{historyItem[key]}</strong>&nbsp;{" "}
                 <Button
                   className="float-end"

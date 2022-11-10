@@ -54,10 +54,20 @@ export default function MainNav() {
               navbarScroll
             >
               <Link href="/" passHref legacyBehavior>
-                <Nav.Link onClick={controlLinks}>Home</Nav.Link>
+                <Nav.Link
+                  onClick={controlLinks}
+                  active={router.pathname === "/"}
+                >
+                  Home
+                </Nav.Link>
               </Link>
               <Link href="/search" passHref legacyBehavior>
-                <Nav.Link onClick={controlLinks}>Advanced Search</Nav.Link>
+                <Nav.Link
+                  onClick={controlLinks}
+                  active={router.pathname === "/search"}
+                >
+                  Advanced Search
+                </Nav.Link>
               </Link>
             </Nav>
             &nbsp;
@@ -89,8 +99,19 @@ export default function MainNav() {
                 id="basic-nav-dropdown"
               >
                 <Link href="/favourites" passHref legacyBehavior>
-                  <NavDropdown.Item onClick={controlLinks}>
+                  <NavDropdown.Item
+                    onClick={controlLinks}
+                    active={router.pathname === "/favourites"}
+                  >
                     Favourites
+                  </NavDropdown.Item>
+                </Link>
+                <Link href="/history" passHref legacyBehavior>
+                  <NavDropdown.Item
+                    onClick={controlLinks}
+                    active={router.pathname === "/history"}
+                  >
+                    History
                   </NavDropdown.Item>
                 </Link>
               </NavDropdown>
