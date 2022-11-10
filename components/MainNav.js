@@ -18,7 +18,8 @@ export default function MainNav() {
 
   const submitForm = (e) => {
     e.preventDefault();
-    router.push(`/artwork?title=true&q=${query}`);
+    const queryString = `/artwork?title=true&q=${query}`;
+    router.push(queryString);
     setExpanded(false);
     setSearchHistory((current) => [...current, queryString]);
   };

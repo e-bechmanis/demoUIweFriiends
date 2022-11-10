@@ -180,7 +180,7 @@ export default function Home() {
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path
               fill="#ff4444"
-              fill-opacity="0.2"
+              fillOpacity="0.2"
               d="M0,288L120,288C240,288,480,288,720,250.7C960,213,1200,139,1320,101.3L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
             ></path>
           </svg>

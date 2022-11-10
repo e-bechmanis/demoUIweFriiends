@@ -19,7 +19,7 @@ export default function History() {
   });
 
   const historyClicked = (e, index) => {
-    router.push(`/artwork?searchHistory${index}`);
+    router.push(`${searchHistory[index]}`);
   };
 
   const removeHistoryClicked = (e, index) => {
@@ -44,28 +44,34 @@ export default function History() {
     );
   } else {
     return (
-      <Container>
-        <ListGroup>
-          {parsedHistory.keys(historyItem, index).map((key) => (
-            <>
-              <ListGroup.Item
-                className={styles.historyListItem}
-                onClick={(e) => historyClicked(e, index)}
-              >
-                {key}: <strong>{historyItem[key]}</strong>&nbsp;{" "}
-                <Button
-                  className="float-end"
-                  variant="danger"
-                  size="sm"
-                  onClick={(e) => removeHistoryClicked(e, index)}
+      <>
+        <Container>
+          <ListGroup>
+            {parsedHistory.map((historyItem, index) => (
+              <>
+                <ListGroup.Item
+                  className={styles.historyListItem}
+                  onClick={(e) => historyClicked(e, index)}
                 >
-                  &times;
-                </Button>
-              </ListGroup.Item>
-            </>
-          ))}
-        </ListGroup>
-      </Container>
+                  {Object.keys(historyItem).map((key) => (
+                    <>
+                      {key}: <strong>{historyItem[key]}</strong>&nbsp;
+                    </>
+                  ))}
+                  <Button
+                    className="float-end"
+                    variant="danger"
+                    size="sm"
+                    onClick={(e) => removeHistoryClicked(e, index)}
+                  >
+                    &times;
+                  </Button>
+                </ListGroup.Item>
+              </>
+            ))}
+          </ListGroup>
+        </Container>
+      </>
     );
   }
 }
