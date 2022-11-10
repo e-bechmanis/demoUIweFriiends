@@ -25,6 +25,7 @@ export default function Favourites() {
       </>
     );
   } else if (favouritesList.length === 0) {
+    console.log(favouritesList);
     return (
       <Container>
         <Card className="text-center">
