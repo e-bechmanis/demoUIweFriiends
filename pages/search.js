@@ -3,9 +3,13 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import Card from "react-bootstrap/Card";
 import { Container } from "react-bootstrap";
+import { useAtom } from "jotai";
+import { searchHistoryAtom } from "../store";
 
 export default function AdvancedSearch() {
   const router = useRouter();
+
+  const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
 
   const {
     register,
@@ -29,6 +33,7 @@ export default function AdvancedSearch() {
 
     console.log(queryString);
 
+    setSearchHistory((current) => [...current, queryString]);
     router.push(`/artwork?${queryString}`);
   }
 
