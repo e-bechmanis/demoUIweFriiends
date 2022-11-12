@@ -19,7 +19,7 @@ export default function History() {
   });
 
   const historyClicked = (e, index) => {
-    router.push(`${searchHistory[index]}`);
+    router.push(`/artwork?${searchHistory[index]}`);
   };
 
   const removeHistoryClicked = (e, index) => {

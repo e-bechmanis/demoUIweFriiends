@@ -12,7 +12,7 @@ import { Container } from "react-bootstrap";
 export default function ArtworkCardDetail({ objectID }) {
   const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
   const [showAdded, setAdded] = useState(
-    favouritesList.includes({ objectID }) ? true : false
+    favouritesList.includes(objectID) ? true : false
   );
 
   const { data, error } = useSWR(
