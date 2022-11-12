@@ -40,9 +40,10 @@ export default function ArtworkCard({ objectID }) {
               <br />
               <br />
             </Card.Text>
-            <Link href={`/artwork/${objectID}`} passHref>
+            <Link href={`/artwork/${objectID}`} passHref legacyBehavior>
               <Button className="mt-auto" variant="outline-danger">
-                ID: {objectID} <BsBoxArrowUpRight className="float-end" />
+                ID: {objectID} &nbsp;
+                <BsBoxArrowUpRight className="float-end" />
               </Button>
             </Link>
           </Card.Body>
