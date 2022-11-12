@@ -107,7 +107,7 @@ export default function Home() {
   return (
     <>
       <Row>
-        <Link href="https://www.metmuseum.org/" passHref={true}>
+        <Link href="https://www.metmuseum.org/" passHref={true} legacyBehavior>
           <ImageButton
             className="ms-3"
             focusRipple
