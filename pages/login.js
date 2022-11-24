@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { favouritesAtom } from "../store";
 import { searchHistoryAtom } from "../store";
 import { getFavourites, getHistory } from "../lib/userData";
+import { useAtom } from "jotai";
 
 export default function Login(props) {
   const [user, setUser] = useState("");
