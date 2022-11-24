@@ -3,17 +3,16 @@ import Card from "react-bootstrap/Card";
 import Error from "next/error";
 import { useAtom } from "jotai";
 import { favouritesAtom } from "../store";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { FaRegHeart } from "react-icons/fa";
 import { Container } from "react-bootstrap";
+import { addToFavourites, removeFromFavourites } from "../lib/userData";
 
 // ArtworkCardDetail (components/ArtworkCardDetail.js)
 export default function ArtworkCardDetail({ objectID }) {
   const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
-  const [showAdded, setAdded] = useState(
-    favouritesList.includes(objectID) ? true : false
-  );
+  const [showAdded, setShowAdded] = useState(false);
 
   const { data, error } = useSWR(
     objectID
@@ -21,15 +20,15 @@ export default function ArtworkCardDetail({ objectID }) {
       : null
   );
 
-  const favouritesClicked = () => {
-    if (showAdded === true) {
-      setFavouritesList((current) => current.filter((fav) => fav != objectID));
-      setAdded(false);
-    } else {
-      setFavouritesList((current) => [...current, objectID]);
-      setAdded(true);
-    }
-  };
+  useEffect(() => {
+    setShowAdded(favouritesList?.includes(objectID));
+  }, [favouritesList]);
+
+  async function favouritesClicked() {
+    showAdded === true
+      ? setFavouritesList(await removeFromFavourites(objectID))
+      : setFavouritesList(await addToFavourites(objectID));
+  }
 
   if (error) return <Error statusCode={404} />;
   else if (!data) return null;
