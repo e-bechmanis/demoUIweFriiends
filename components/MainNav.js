@@ -7,6 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAtom } from "jotai";
 import { searchHistoryAtom } from "../store";
 import { addToHistory } from "../lib/userData";
+import { readToken, removeToken } from "../lib/authenticate";
 
 // components/MainNav.js
 export default function MainNav() {
@@ -14,6 +15,8 @@ export default function MainNav() {
   const [query, setQuery] = useState("Search");
   const [isExpanded, setExpanded] = useState(false);
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
+
+  let token = readToken();
 
   const handleSearchInput = (e) => setQuery(e.target.value);
 
@@ -25,13 +28,19 @@ export default function MainNav() {
     setSearchHistory(await addToHistory(queryString));
   }
 
-  const controlMenuToggle = () => {
-    isExpanded === true ? setExpanded(false) : setExpanded(true);
-  };
+  function logout() {
+    setExpanded(false);
+    removeToken();
+    router.push("/login");
+  }
 
-  const controlLinks = () => {
+  function controlMenuToggle() {
+    isExpanded === true ? setExpanded(false) : setExpanded(true);
+  }
+
+  function controlLinks() {
     if (isExpanded === true) setExpanded(false);
-  };
+  }
 
   return (
     <>
