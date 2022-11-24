@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import { Container } from "react-bootstrap";
 import { useAtom } from "jotai";
 import { searchHistoryAtom } from "../store";
+import { addToHistory } from "../lib/userData";
 
 export default function AdvancedSearch() {
   const router = useRouter();
@@ -24,16 +25,14 @@ export default function AdvancedSearch() {
     },
   });
 
-  function submitForm(data) {
+  async function submitForm(data) {
     let queryString = `${data.searchBy}=true${
       data.geoLocation && `&geoLocation=${data.geoLocation}`
     }${data.medium && `&geoLocation=${data.medium}`}&isOnView=${
       data.isOnView
     }&isHighlight=${data.isHighlight}&q=${data.q}`;
 
-    console.log(queryString);
-
-    setSearchHistory((current) => [...current, queryString]);
+    setSearchHistory(await addToHistory(queryString));
     router.push(`/artwork?${queryString}`);
   }
 

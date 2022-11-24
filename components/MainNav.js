@@ -6,6 +6,7 @@ import { FaSearch, FaUserAlt } from "react-icons/fa";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAtom } from "jotai";
 import { searchHistoryAtom } from "../store";
+import { addToHistory } from "../lib/userData";
 
 // components/MainNav.js
 export default function MainNav() {
@@ -16,13 +17,13 @@ export default function MainNav() {
 
   const handleSearchInput = (e) => setQuery(e.target.value);
 
-  const submitForm = (e) => {
+  async function submitForm(e) {
     e.preventDefault();
     const queryString = `title=true&q=${query}`;
     router.push(`/artwork?${queryString}`);
     setExpanded(false);
-    setSearchHistory((current) => [...current, queryString]);
-  };
+    setSearchHistory(await addToHistory(queryString));
+  }
 
   const controlMenuToggle = () => {
     isExpanded === true ? setExpanded(false) : setExpanded(true);
