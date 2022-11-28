@@ -58,7 +58,7 @@ export default function Register(props) {
           <Form.Group>
             <Form.Label>Confirm Password:</Form.Label>
             <Form.Control
-              type="password2"
+              type="password"
               value={password2}
               id="password2"
               name="password2"

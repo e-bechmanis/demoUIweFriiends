@@ -72,60 +72,81 @@ export default function MainNav() {
                   Home
                 </Nav.Link>
               </Link>
-              <Link href="/search" passHref legacyBehavior>
-                <Nav.Link
-                  onClick={controlLinks}
-                  active={router.pathname === "/search"}
-                >
-                  Advanced Search
-                </Nav.Link>
-              </Link>
+              {token && (
+                <Link href="/search" passHref legacyBehavior>
+                  <Nav.Link
+                    onClick={controlLinks}
+                    active={router.pathname === "/search"}
+                  >
+                    Advanced Search
+                  </Nav.Link>
+                </Link>
+              )}
             </Nav>
             &nbsp;
-            <Form className="d-flex" onSubmit={submitForm}>
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-                onChange={handleSearchInput}
-              />
-              <Button
-                type="submit"
-                variant="outline-danger"
-                className="my-button"
-              >
-                Search&nbsp;
-                <FaSearch />
-              </Button>
-            </Form>
+            {token && (
+              <Form className="d-flex" onSubmit={submitForm}>
+                <Form.Control
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                  onChange={handleSearchInput}
+                />
+                <Button
+                  type="submit"
+                  variant="outline-danger"
+                  className="my-button"
+                >
+                  Search&nbsp;
+                  <FaSearch />
+                </Button>
+              </Form>
+            )}
             &nbsp;
             <Nav>
-              <NavDropdown
-                title={
-                  <span>
-                    User Name <FaUserAlt /> &nbsp;
-                  </span>
-                }
-                id="basic-nav-dropdown"
-              >
-                <Link href="/favourites" passHref legacyBehavior>
-                  <NavDropdown.Item
-                    onClick={controlLinks}
-                    active={router.pathname === "/favourites"}
-                  >
-                    Favourites
-                  </NavDropdown.Item>
-                </Link>
-                <Link href="/history" passHref legacyBehavior>
-                  <NavDropdown.Item
-                    onClick={controlLinks}
-                    active={router.pathname === "/history"}
-                  >
-                    History
-                  </NavDropdown.Item>
-                </Link>
-              </NavDropdown>
+              {token && (
+                <NavDropdown
+                  title={
+                    <span>
+                      {token.userName} <FaUserAlt /> &nbsp;
+                    </span>
+                  }
+                  id="basic-nav-dropdown"
+                >
+                  <Link href="/favourites" passHref legacyBehavior>
+                    <NavDropdown.Item onClick={controlLinks}>
+                      Favourites
+                    </NavDropdown.Item>
+                  </Link>
+                  <Link href="/history" passHref legacyBehavior>
+                    <NavDropdown.Item onClick={controlLinks}>
+                      History
+                    </NavDropdown.Item>
+                  </Link>
+                  <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+                </NavDropdown>
+              )}
+              {!token && (
+                <>
+                  <Link href="/register" passHref legacyBehavior>
+                    <Nav.Link
+                      onClick={controlLinks}
+                      active={router.pathname === "/register"}
+                    >
+                      Register
+                    </Nav.Link>
+                  </Link>
+                  <Link href="/login" passHref legacyBehavior>
+                    <Nav.Link
+                      onClick={controlLinks}
+                      active={router.pathname === "/login"}
+                    >
+                      Login
+                    </Nav.Link>
+                  </Link>
+                </>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
