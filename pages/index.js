@@ -6,7 +6,7 @@
  *
  * Name: Elena Bechmanis      Student ID: 165090218          Date:28/11/2022
  *
- * Vercel App (Deployed) Link: _____________________________________________________
+ * Vercel App (Deployed) Link: https://museum-app-kohl.vercel.app/
  *
  ********************************************************************************/
 import * as React from "react";
