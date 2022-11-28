@@ -33,7 +33,7 @@ export default function RouteGuard(props) {
     return () => {
       router.events.off("routeChangeComplete", authCheck);
     };
-  });
+  }, []);
 
   function authCheck(url) {
     // redirect to login page if accessing a private page and not logged in
