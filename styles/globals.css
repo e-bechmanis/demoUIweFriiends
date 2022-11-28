@@ -18,3 +18,11 @@
 .footer-svg{
     z-index: -1;
 }
+
+.userForms{
+    max-width: 40% !important;
+}
+
+.register{
+    font-weight: 700;
+}

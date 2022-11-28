@@ -23,14 +23,16 @@ export default function Register(props) {
 
   return (
     <>
-      <Container>
+      <Container className="userForms">
         <br />
         <br />
-        <Card bg="light">
-          <Card.Body>
-            <h2>Register</h2>Register for an account:
-          </Card.Body>
-        </Card>
+
+        <h3 className="text-danger register">REGISTER</h3>
+        <div className="text-muted">
+          Register for an account and get full access to art collection of The
+          Met
+        </div>
+
         <br />
         <Form onSubmit={handleSubmit}>
           <Form.Group>
@@ -74,11 +76,20 @@ export default function Register(props) {
           )}
 
           <br />
-          <Button variant="primary" className="pull-right" type="submit">
+          <Button variant="outline-danger" className="pull-right" type="submit">
             Register
           </Button>
         </Form>
       </Container>
+      <div className="footer-svg fixed-bottom">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#ff4444"
+            fillOpacity="0.2"
+            d="M0,32L120,80C240,128,480,224,720,229.3C960,235,1200,149,1320,106.7L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
     </>
   );
 }

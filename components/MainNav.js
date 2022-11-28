@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { FaSearch, FaUserAlt } from "react-icons/fa";
+import { RiLoginBoxLine } from "react-icons/ri";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAtom } from "jotai";
 import { searchHistoryAtom } from "../store";
@@ -142,7 +143,7 @@ export default function MainNav() {
                       onClick={controlLinks}
                       active={router.pathname === "/login"}
                     >
-                      Login
+                      Login <RiLoginBoxLine />
                     </Nav.Link>
                   </Link>
                 </>
