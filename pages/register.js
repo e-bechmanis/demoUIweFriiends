@@ -1,4 +1,4 @@
-import { Card, Form, Alert, Button, Container } from "react-bootstrap";
+import { Form, Alert, Button, Container } from "react-bootstrap";
 import { useState } from "react";
 import { registerUser } from "../lib/authenticate";
 import { useRouter } from "next/router";
@@ -27,10 +27,9 @@ export default function Register(props) {
         <br />
         <br />
 
-        <h3 className="text-danger register">REGISTER</h3>
+        <h4 className="register">REGISTER</h4>
         <div className="text-muted">
-          Register for an account and get full access to art collection of The
-          Met
+          Demo UI for user registration via email
         </div>
 
         <br />
@@ -40,8 +39,8 @@ export default function Register(props) {
             <Form.Control
               type="text"
               value={user}
-              id="userName"
-              name="userName"
+              id="userId"
+              name="userId"
               onChange={(e) => setUser(e.target.value)}
             />
           </Form.Group>
@@ -81,15 +80,6 @@ export default function Register(props) {
           </Button>
         </Form>
       </Container>
-      <div className="footer-svg fixed-bottom">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path
-            fill="#ff4444"
-            fillOpacity="0.2"
-            d="M0,32L120,80C240,128,480,224,720,229.3C960,235,1200,149,1320,106.7L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
-          ></path>
-        </svg>
-      </div>
     </>
   );
 }

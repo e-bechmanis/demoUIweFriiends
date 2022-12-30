@@ -1,33 +1,20 @@
-import { Card, Form, Alert, Button, Container } from "react-bootstrap";
+import { Form, Alert, Button, Container } from "react-bootstrap";
 import { useState } from "react";
 import { authenticateUser } from "../lib/authenticate";
 import { useRouter } from "next/router";
-import { favouritesAtom } from "../store";
-import { searchHistoryAtom } from "../store";
-import { getFavourites, getHistory } from "../lib/userData";
-import { useAtom } from "jotai";
 
 export default function Login(props) {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [warning, setWarning] = useState("");
 
-  const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
-  const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
-
   const router = useRouter();
-
-  async function updateAtoms() {
-    setFavouritesList(await getFavourites());
-    setSearchHistory(await getHistory());
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       await authenticateUser(user, password);
-      await updateAtoms();
-      router.push("/favourites");
+      router.push(`/profile/${user}`);
     } catch (err) {
       setWarning(err.message);
     }
@@ -38,18 +25,28 @@ export default function Login(props) {
       <Container className="userForms">
         <br />
         <br />
-        <h3 className="text-danger register">LOGIN</h3>
-        <div className="text-muted">Enter your login information below</div>
-
+        <h3 className="register">Sign in</h3>
+        <div className="text-muted">
+          Demo UI to test email, Facebook and Gmail sign in functionality
+        </div>
+        <br />
+        <a href="http://localhost:8080/api/auth/facebook">
+          Facebook Simple Login
+        </a>
+        <br />
+        <br />
+        <a href="http://localhost:8080/api/auth/google">Google Simple Login</a>
+        <br />
+        <br />
         <br />
         <Form onSubmit={handleSubmit}>
           <Form.Group>
-            <Form.Label>User:</Form.Label>
+            <Form.Label>Email:</Form.Label>
             <Form.Control
               type="text"
               value={user}
-              id="userName"
-              name="userName"
+              id="userId"
+              name="userId"
               onChange={(e) => setUser(e.target.value)}
             />
           </Form.Group>
@@ -78,15 +75,6 @@ export default function Login(props) {
           </Button>
         </Form>
       </Container>
-      <div className="footer-svg fixed-bottom">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path
-            fill="#ff4444"
-            fillOpacity="0.2"
-            d="M0,32L120,80C240,128,480,224,720,229.3C960,235,1200,149,1320,106.7L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
-          ></path>
-        </svg>
-      </div>
     </>
   );
 }

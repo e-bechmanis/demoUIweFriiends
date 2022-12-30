@@ -1,7 +1,3 @@
-import { useAtom } from "jotai";
-import { searchHistoryAtom } from "../store";
-import { favouritesAtom } from "../store";
-import { getFavourites, getHistory } from "../lib/userData";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { isAuthenticated } from "../lib/authenticate";
@@ -10,19 +6,9 @@ const PUBLIC_PATHS = ["/login", "/", "/_error", "/register"];
 
 export default function RouteGuard(props) {
   const router = useRouter();
-  const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
-  const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
   const [authorized, setAuthorized] = useState(false);
 
-  async function updateAtoms() {
-    setFavouritesList(await getFavourites());
-    setSearchHistory(await getHistory());
-  }
-
   useEffect(() => {
-    // ensure that atoms are up to date when the user refreshes the page
-    updateAtoms();
-
     // on initial load - run auth check
     authCheck(router.pathname);
 
