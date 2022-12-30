@@ -10,13 +10,20 @@ export default function ProfileCity() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    router.push(`/profile/photo`);
-    await addCity(city);
+    try {
+      await addCity(city);
+      router.push("/profile/photo");
+    } catch (err) {
+      setWarning(err.message);
+    }
   }
 
   return (
     <>
       <Container className="userForms">
+        <br />
+        <h3 className="register">Location</h3>
+        <br />
         <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>Select your location (city)</Form.Label>
