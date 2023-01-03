@@ -3,12 +3,18 @@ import { useRouter } from "next/router";
 import { GrFacebook } from "react-icons/gr";
 import { BsGoogle } from "react-icons/bs";
 import Link from "next/link";
+import { authenticateViaFacebook } from "../../lib/authenticate";
 
 export default function Signin(props) {
   const router = useRouter();
 
-  async function handleRedirect() {
+  async function handleEmailRedirect() {
     router.push(`/signin/email`);
+  }
+
+  async function handleFacebookRedirect() {
+    await authenticateViaFacebook();
+    router.push(`/profile`);
   }
 
   return (
@@ -24,15 +30,13 @@ export default function Signin(props) {
           </div>
           <br />
           <br />
-          <Link
-            href={`${process.env.NEXT_PUBLIC_API_URL}/facebook`}
-            passHref
-            legacyBehavior
+          <Button
+            variant="outline-secondary"
+            className="login-btn"
+            onClick={handleFacebookRedirect}
           >
-            <Button variant="outline-secondary" className="login-btn">
-              <GrFacebook /> &nbsp; &nbsp;Facebook
-            </Button>
-          </Link>
+            <GrFacebook /> &nbsp; &nbsp;Facebook
+          </Button>
           <br />
           <br />
           <Link
@@ -49,7 +53,7 @@ export default function Signin(props) {
           <Button
             variant="outline-secondary"
             className="login-btn"
-            onClick={handleRedirect}
+            onClick={handleEmailRedirect}
           >
             email
           </Button>
