@@ -73,7 +73,7 @@ export default function MainNav() {
                 <NavDropdown
                   title={
                     <span>
-                      Your Account <FaUserAlt /> &nbsp;
+                      My Account <FaUserAlt /> &nbsp;
                     </span>
                   }
                   id="basic-nav-dropdown"

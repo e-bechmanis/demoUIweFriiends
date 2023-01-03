@@ -1,16 +1,22 @@
 import { Button, Container } from "react-bootstrap";
 import Link from "next/link";
+import ProfileCard from "../../components/ProfileCard";
 
 export default function Profile() {
   return (
     <>
       <Container>
-        <h1 className="register">Profile</h1>
-        <br />
+        <ProfileCard />
         <br />
         <Link href={`/profile/name`} passHref legacyBehavior>
-          <Button className="mt-auto" variant="outline-danger">
-            Edit profile
+          <Button className="mt-auto custom-btn" variant="outline-danger">
+            Edit my profile
+          </Button>
+        </Link>
+        &nbsp; &nbsp;
+        <Link href={`/profile/name`} passHref legacyBehavior>
+          <Button className="mt-auto" variant="outline-secondary">
+            Delete my profile
           </Button>
         </Link>
       </Container>

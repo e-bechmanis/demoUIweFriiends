@@ -14,7 +14,7 @@ export default function Login(props) {
     e.preventDefault();
     try {
       await authenticateUser(user, password);
-      router.push(`/profile/${user}`);
+      router.push(`/profile`);
     } catch (err) {
       setWarning(err.message);
     }

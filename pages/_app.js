@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
+import "swiper/swiper.min.css";
 import Layout from "../components/Layout";
 import RouteGuard from "../components/RouteGuard";
 import { SWRConfig } from "swr";

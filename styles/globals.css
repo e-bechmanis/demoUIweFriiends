@@ -11,8 +11,7 @@
 }
 
 .my-card{
-    max-height: 300px !important;
-    object-fit: cover;
+    padding-left: 1rem;
 }
 
 .footer-svg{
@@ -26,4 +25,38 @@
 .register{
     font-weight: 600;
     color: #F46B5D;
+    text-align: center;
 }
+
+.my-card-img{
+    border-radius: 50% !important;
+    max-width: 200px !important;
+    padding-left: 1rem;
+}
+
+.profile-name{
+    color: #F46B5D;
+}
+
+.profile-text{
+    font-weight: 600;
+    color: #F46B5D;
+}
+
+.custom-btn {
+    border-color: #F46B5D !important;
+    color: #F46B5D !important;
+    width: 350px;
+}
+
+.back-arrow{
+    border: none;
+    color: #FEDED2;
+    background-color: white !important;
+}
+
+.custom-btn:hover {
+    background-color: #F46B5D !important;
+    color: white !important;
+}
+
