@@ -24,21 +24,26 @@ export default function ProfileCard() {
           />
           <Card.Body className="d-flex flex-column">
             <Card.Title className="profile-name">
-              {profile.name ? profile.name : ""}
+              {profile.name ? profile.name : "Please update your profile"}
             </Card.Title>
             <Card.Text className="text-muted">
-              {profile.age ? profile.age + " y.o. " : ""},{" "}
-              {profile.location.country ? profile.location.country : ""} (
-              {profile.location.city ? profile.location.city : ""})
+              {profile.age ? profile.age + " y.o. - " : ""}
+              {profile.location && profile.location.country
+                ? profile.location.country
+                : ""}{" "}
+              {profile.location && profile.location.city
+                ? "(" + profile.location.city + ")"
+                : ""}
               <br />
-              <strong>Zodiac Sign: </strong>
-              {profile.zodiacSign ? profile.zodiacSign : "N/A"}
+              {profile.zodiacSign ? <strong>Zodiac Sign: </strong> : ""}
+              {profile.zodiacSign ? profile.zodiacSign : ""}
               <br />
-              <strong>Looking for: </strong>
+              {profile.reason ? <strong>Looking for: </strong> : ""}
               <ul>
-                {profile.reason.map((interest) => (
-                  <li key="interest">{interest}</li>
-                ))}
+                {profile.reason &&
+                  profile.reason.map((interest) => (
+                    <li key="interest">{interest}</li>
+                  ))}
               </ul>
             </Card.Text>
           </Card.Body>

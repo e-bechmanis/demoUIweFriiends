@@ -5,7 +5,7 @@ import { useAtom } from "jotai";
 import { profileAtom } from "../store";
 import { getUserProfile } from "../lib/userData";
 
-const PUBLIC_PATHS = ["/login", "/", "/_error", "/register"];
+const PUBLIC_PATHS = ["/signin", "/signin/email", "/", "/_error", "/register"];
 
 export default function RouteGuard(props) {
   const [profile, setProfile] = useAtom(profileAtom);

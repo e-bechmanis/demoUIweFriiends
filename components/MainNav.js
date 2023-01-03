@@ -18,7 +18,7 @@ export default function MainNav() {
   function logout() {
     setExpanded(false);
     removeToken();
-    router.push("/login");
+    router.push("/signin");
   }
 
   function controlMenuToggle() {
@@ -96,7 +96,7 @@ export default function MainNav() {
                       Register
                     </Nav.Link>
                   </Link>
-                  <Link href="/login" passHref legacyBehavior>
+                  <Link href="/signin" passHref legacyBehavior>
                     <Nav.Link
                       onClick={controlLinks}
                       active={router.pathname === "/login"}

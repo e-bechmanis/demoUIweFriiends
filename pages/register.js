@@ -27,7 +27,8 @@ export default function Register(props) {
         <br />
         <br />
 
-        <h4 className="register">REGISTER</h4>
+        <h3 className="register">Register</h3>
+        <br />
         <div className="text-muted">
           Demo UI for user registration via email
         </div>
@@ -75,9 +76,15 @@ export default function Register(props) {
           )}
 
           <br />
-          <Button variant="outline-danger" className="pull-right" type="submit">
-            Register
-          </Button>
+          <div className="text-center">
+            <Button
+              variant="outline-danger"
+              className="custom-btn"
+              type="submit"
+            >
+              Register
+            </Button>
+          </div>
         </Form>
       </Container>
     </>

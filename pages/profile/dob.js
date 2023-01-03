@@ -38,11 +38,13 @@ export default function ProfileDob() {
           </Col>
           <Col className="col-6">
             <br />
-            <IconContext.Provider value={{ size: "45px" }}>
-              <Button className="back-arrow" onClick={handleReturn}>
-                <BsFillArrowLeftCircleFill />
-              </Button>
-            </IconContext.Provider>
+            <div className="text-center">
+              <IconContext.Provider value={{ size: "45px" }}>
+                <Button className="back-arrow" onClick={handleReturn}>
+                  <BsFillArrowLeftCircleFill />
+                </Button>
+              </IconContext.Provider>
+            </div>
             <br />
             <br />
             <h3 className="register">Tell us about you</h3>
@@ -58,6 +60,7 @@ export default function ProfileDob() {
                       type="number"
                       id="day"
                       name="day"
+                      placeholder="DD"
                       onChange={(e) => setDay(e.target.value)}
                       required
                     />
@@ -67,6 +70,7 @@ export default function ProfileDob() {
                       type="number"
                       id="month"
                       name="month"
+                      placeholder="MM"
                       onChange={(e) => setMonth(e.target.value)}
                       required
                     />
@@ -76,6 +80,7 @@ export default function ProfileDob() {
                       type="number"
                       id="year"
                       name="year"
+                      placeholder="YYYY"
                       onChange={(e) => setYear(e.target.value)}
                       required
                     />
@@ -93,13 +98,15 @@ export default function ProfileDob() {
               )}
 
               <br />
-              <Button
-                variant="outline-danger"
-                className="custom-btn"
-                type="submit"
-              >
-                Next
-              </Button>
+              <div className="text-center">
+                <Button
+                  variant="outline-danger"
+                  className="custom-btn"
+                  type="submit"
+                >
+                  Next
+                </Button>
+              </div>
             </Form>
           </Col>
         </Row>

@@ -1,9 +1,9 @@
 import { Form, Alert, Button, Container } from "react-bootstrap";
 import { useState } from "react";
-import { authenticateUser } from "../lib/authenticate";
+import { authenticateUser } from "../../lib/authenticate";
 import { useRouter } from "next/router";
 
-export default function Login(props) {
+export default function EmailSignin(props) {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [warning, setWarning] = useState("");
@@ -25,19 +25,11 @@ export default function Login(props) {
       <Container className="userForms">
         <br />
         <br />
-        <h3 className="register">Sign in</h3>
+        <h3 className="register">Sign in via email</h3>
+        <br />
         <div className="text-muted">
-          Demo UI to test email, Facebook and Gmail sign in functionality
+          Demo UI to test email sign in functionality
         </div>
-        <br />
-        <a href="http://localhost:8080/api/auth/facebook">
-          Facebook Simple Login
-        </a>
-        <br />
-        <br />
-        <a href="http://localhost:8080/api/auth/google">Google Simple Login</a>
-        <br />
-        <br />
         <br />
         <Form onSubmit={handleSubmit}>
           <Form.Group>
@@ -70,9 +62,15 @@ export default function Login(props) {
           )}
 
           <br />
-          <Button variant="outline-danger" className="pull-right" type="submit">
-            Login
-          </Button>
+          <div className="text-center">
+            <Button
+              variant="outline-danger"
+              className="custom-btn"
+              type="submit"
+            >
+              Login
+            </Button>
+          </div>
         </Form>
       </Container>
     </>

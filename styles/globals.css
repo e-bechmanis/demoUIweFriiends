@@ -56,7 +56,23 @@
 }
 
 .custom-btn:hover {
-    background-color: #F46B5D !important;
     color: white !important;
+    background-color: #F46B5D !important;
+}
+
+.back-arrow:hover{
+    color: #F46B5D !important;
+}
+
+.login-btn{
+    width: 350px;
+    border: none;
+    background-color: #FFF1EC !important;
+    color: rgb(67, 66, 66) !important;
+}
+
+.login-btn:hover{
+    border: none;
+    background-color: #FEDED2 !important;
 }
 

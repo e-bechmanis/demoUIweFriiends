@@ -1,7 +1,10 @@
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import { uploadToServer } from "../../lib/userData";
 import { useRouter } from "next/router";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import ProfileCard from "../../components/ProfileCard";
+import { IconContext } from "react-icons";
 
 export default function ProfilePhoto() {
   const [image, setImage] = useState(null);
@@ -18,38 +21,62 @@ export default function ProfilePhoto() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    router.push(`/`);
+    router.push(`/profile`);
     await uploadToServer(image);
+  }
+
+  function handleReturn(e) {
+    router.push("/profile/city");
   }
 
   return (
     <>
-      <Container className="userForms">
-        <h3 className="register">Testing photo upload</h3>
+      <Container>
         <br />
-        <br />
-        <Form encType="multipart/form-data" method="POST">
-          <Form.Group>
-            <Form.Label>Please upload your photo</Form.Label>
+        <Row>
+          <Col className="col-4">
+            <ProfileCard />
+          </Col>
+          <Col className="col-6">
             <br />
-            <Form.Control
-              type="file"
-              id="photo"
-              name="photo"
-              onChange={uploadPhoto}
-            />
-          </Form.Group>
-          <br />
-          <br />
-          <Button
-            variant="outline-danger"
-            className="pull-right"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Upload
-          </Button>
-        </Form>
+            <div className="text-center">
+              <IconContext.Provider value={{ size: "45px" }}>
+                <Button className="back-arrow" onClick={handleReturn}>
+                  <BsFillArrowLeftCircleFill />
+                </Button>
+              </IconContext.Provider>
+            </div>
+            <br />
+            <br />
+            <h3 className="register">Testing photo upload</h3>
+            <br />
+            <br />
+            <Form encType="multipart/form-data" method="POST">
+              <Form.Group>
+                <Form.Label>Please upload your photo</Form.Label>
+                <br />
+                <Form.Control
+                  type="file"
+                  id="photo"
+                  name="photo"
+                  onChange={uploadPhoto}
+                />
+              </Form.Group>
+              <br />
+              <br />
+              <div className="text-center">
+                <Button
+                  variant="outline-danger"
+                  className="custom-btn"
+                  type="submit"
+                  onClick={handleSubmit}
+                >
+                  Upload
+                </Button>
+              </div>
+            </Form>
+          </Col>
+        </Row>
       </Container>
     </>
   );

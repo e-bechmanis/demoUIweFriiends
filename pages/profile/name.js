@@ -52,7 +52,7 @@ export default function ProfileName() {
               )}
 
               <br />
-              <div className="mx-auto">
+              <div className="text-center">
                 <Button
                   variant="outline-danger"
                   className="custom-btn"
